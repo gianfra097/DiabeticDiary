@@ -11,6 +11,7 @@ Cosa farà la mia app?
 - Condivisione dei dati e degli alimenti direttamente alla dottoressa in .pdf
 - Allarmi per ricordare di fare insulina se si usano penne o se si vuole fare un bolo onda doppia non programmato, cioè invece di inserire onda doppia 
 sul micro, si imposta la sveglia che ti ricorda quanta insulina devi fare ad un certo orario
+- Sveglia per il cambio set (se si utilizza il microinfusore)
 
 
 Cosa utilizzo nella mia app?
