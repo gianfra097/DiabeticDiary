@@ -10,3 +10,18 @@ Screen:
         size_hint_y: 0.3 
         allow_stretch: True
         pos_hint: {"x": 0, "y": 0.68}
+
+    FloatLayout:
+        size_hint: 1,1  #FloatLayout 100% altezza e larghezza
+        Button:
+            background_color: kivy.utils.get_color_from_hex("#345065")
+            background_down: ""
+            background_normal: ""
+            text: 'Accedi'
+            pos_hint: {"center_x":0.5 , "center_y":0.5}   #center_x:0.5, center_y:0.5 per centrare
+            size_hint: 0.7,None
+            height: dp(90)
+            #on_press:
+                #self.background_color = ()
+            #on_release
+                #self.background_color = (0,1,0,1)  '''
