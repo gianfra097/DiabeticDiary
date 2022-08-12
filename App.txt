@@ -12,8 +12,3 @@ Cosa farà la mia app?
 - Allarmi per ricordare di fare insulina se si usano penne o se si vuole fare un bolo onda doppia non programmato, cioè invece di inserire onda doppia 
 sul micro, si imposta la sveglia che ti ricorda quanta insulina devi fare ad un certo orario
 - Sveglia per il cambio set (se si utilizza il microinfusore)
-
-
-Cosa utilizzo nella mia app?
-- API con OAuth 2.0
-
