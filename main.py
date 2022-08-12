@@ -14,6 +14,5 @@ class DiabeticDiaryApp(App):
         self.auth.configure()
         self.auth.build_request()
 
-
 if __name__=='__main__':
     DiabeticDiaryApp().run()
