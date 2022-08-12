@@ -19,8 +19,7 @@ class AndroidOAuth:
 
     def build_request(self):
         authRequestBuilder = AuthorizationRequestBuilder(self.service_config, self.client_id, "code", Uri.parse(self.redirect_uri))
-        authRequest = authRequestBuilder.setScope("offline_access").build()
-        
+        authRequest = authRequestBuilder.setScope("offline_access").build()      
         
         authService = AuthorizationService(PythonActivity.mActivity.getApplicationContext())
         authIntent = authService.getAuthorizationRequestIntent(authRequest)
