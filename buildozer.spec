@@ -187,11 +187,7 @@ android.ndk = 25
 #android.add_assets =
 
 # (list) Gradle dependencies to add
-<<<<<<< HEAD
 android.gradle_dependencies = net.openid:appauth:0.11.1
-=======
-#android.gradle_dependencies =
->>>>>>> f6b8d0ac688410f180a4502934432f1e6345a6df
 
 # (bool) Enable AndroidX support. Enable when 'android.gradle_dependencies'
 # contains an 'androidx' package, or any package from Kotlin source.
@@ -282,11 +278,7 @@ android.allow_backup = True
 # you can do so with the manifestPlaceholders property.
 # This property takes a map of key-value pairs. (via a string)
 # Usage example : android.manifest_placeholders = [myCustomUrl:\"org.kivy.customurl\"]
-<<<<<<< HEAD
 android.manifest_placeholders = [appAuthRedirectScheme:\"me.gianfranco.diabeticdiary\"]
-=======
-# android.manifest_placeholders = [:]
->>>>>>> f6b8d0ac688410f180a4502934432f1e6345a6df
 
 # (bool) disables the compilation of py to pyc/pyo files when packaging
 # android.no-compile-pyo = True
