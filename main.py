@@ -10,6 +10,9 @@ from auth import AndroidOAuth
 
 class DiabeticDiaryApp(App):
     def build(self):
+        pass
+    
+    def request(): #Inizializzo la richiesta che verra' avviata tramite il click del bottone (kv file)
         self.auth = AndroidOAuth('https://sandbox-api.dexcom.com/v2/oauth2/login','https://sandbox-api.dexcom.com/v2/oauth2/token','J0BPeezCjuIxwhvGxwaGOeB59igF8ORP','me.gianfranco.diabeticdiary:/oauth2redirect')
         self.auth.configure()
         self.auth.build_request()
