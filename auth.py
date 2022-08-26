@@ -11,9 +11,10 @@ AuthorizationRequestBuilder = autoclass(
 )
 AuthorizationResponse = autoclass("net.openid.appauth.AuthorizationResponse")
 AuthorizationService = autoclass("net.openid.appauth.AuthorizationService")
-ClientSecretBasic = autoclass("net.openid.appauth.ClientSecretBasic")
+ClientSecretPost = autoclass("net.openid.appauth.ClientSecretPost")
 Uri = autoclass("android.net.Uri")
 PythonActivity = autoclass("org.kivy.android.PythonActivity")
+
 
 class AuthorizationServiceTokenResponseCallback(PythonJavaClass):
     __javainterfaces__ = [
@@ -43,21 +44,35 @@ class AndroidOAuth:
         self._app = App.get_running_app()
 
     def _on_token_request_completed(self, tokenresp, ex):
-        print(ex.toJsonString())
-        print(tokenresp.accessToken)
-        print(tokenresp.refreshToken)
-        print(
-            datetime.datetime.fromtimestamp(tokenresp.accessTokenExpirationTime / 1000)
-        )
+
+        try:
+            exception_json_string = tokenresp.toJsonString()
+        except:
+            exception_json_string = None
+
+        try:
+            token_storage = dict(
+                access_token=tokenresp.accessToken,
+                refresh_token=tokenresp.refreshToken,
+                expiration_datetime=datetime.datetime.fromtimestamp(
+                    tokenresp.accessTokenExpirationTime / 1000
+                ),
+            )
+        except:
+            token_storage = None
+
+        print(token_storage, exception_json_string)
 
     def _on_token_res(self, intent):
         resp = AuthorizationResponse.fromIntent(intent)
         print(resp)
         if resp:
             print("Ok, request di autorizzazoine valida")
-            clientAuth = ClientSecretBasic("") 
+            clientAuth = ClientSecretPost("")
             self.authService.performTokenRequest(
-                resp.createTokenExchangeRequest(), clientAuth, self.support_authorization_callback
+                resp.createTokenExchangeRequest(),
+                clientAuth,
+                self.support_authorization_callback,
             )
         else:
             print("Request non valida")
@@ -68,8 +83,10 @@ class AndroidOAuth:
         )
         self.support_authorization_callback = (
             AuthorizationServiceTokenResponseCallback()
-        ) 
-        self.support_authorization_callback.on_token_request_completed = self._on_token_request_completed
+        )
+        self.support_authorization_callback.on_token_request_completed = (
+            self._on_token_request_completed
+        )
 
     def build_request(self):
         authRequestBuilder = AuthorizationRequestBuilder(
