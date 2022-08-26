@@ -1,5 +1,6 @@
 from android import autoclass
 from jnius import PythonJavaClass, java_method
+import datetime
 from kivy.app import App
 
 AuthorizationServiceConfiguration = autoclass(
@@ -10,15 +11,17 @@ AuthorizationRequestBuilder = autoclass(
 )
 AuthorizationResponse = autoclass("net.openid.appauth.AuthorizationResponse")
 AuthorizationService = autoclass("net.openid.appauth.AuthorizationService")
+ClientSecretBasic = autoclass("net.openid.appauth.ClientSecretBasic")
 Uri = autoclass("android.net.Uri")
 PythonActivity = autoclass("org.kivy.android.PythonActivity")
-
 
 class AuthorizationServiceTokenResponseCallback(PythonJavaClass):
     __javainterfaces__ = [
         "net/openid/appauth/AuthorizationService$TokenResponseCallback"
     ]
     __javacontext__ = "app"
+
+    on_token_request_completed = None
 
     @java_method(
         "(Lnet/openid/appauth/TokenResponse;Lnet/openid/appauth/AuthorizationException;)V"
@@ -27,7 +30,8 @@ class AuthorizationServiceTokenResponseCallback(PythonJavaClass):
         print(resp)
         print(ex)
         if resp:
-            pass
+            if self.on_token_request_completed is not None:
+                self.on_token_request_completed(resp, ex)
 
 
 class AndroidOAuth:
@@ -38,12 +42,22 @@ class AndroidOAuth:
         self.redirect_uri = redirect_uri
         self._app = App.get_running_app()
 
+    def _on_token_request_completed(self, tokenresp, ex):
+        print(ex.toJsonString())
+        print(tokenresp.accessToken)
+        print(tokenresp.refreshToken)
+        print(
+            datetime.datetime.fromtimestamp(tokenresp.accessTokenExpirationTime / 1000)
+        )
+
     def _on_token_res(self, intent):
         resp = AuthorizationResponse.fromIntent(intent)
+        print(resp)
         if resp:
             print("Ok, request di autorizzazoine valida")
+            clientAuth = ClientSecretBasic("") 
             self.authService.performTokenRequest(
-                resp.createTokenExchangeRequest(), self.support_authorization_callback
+                resp.createTokenExchangeRequest(), clientAuth, self.support_authorization_callback
             )
         else:
             print("Request non valida")
@@ -54,7 +68,8 @@ class AndroidOAuth:
         )
         self.support_authorization_callback = (
             AuthorizationServiceTokenResponseCallback()
-        )
+        ) 
+        self.support_authorization_callback.on_token_request_completed = self._on_token_request_completed
 
     def build_request(self):
         authRequestBuilder = AuthorizationRequestBuilder(
