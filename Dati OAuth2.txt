@@ -1,7 +1,0 @@
-Grant Type: Authorization Code
-Auth URL: https://sandbox-api.dexcom.com/v2/oauth2/login
-Access Token URL: https://sandbox-api.dexcom.com/v2/oauth2/token
-Scope: offline_access
-State: Opzionale
-Client Authentication: Send client credentials in body
-Add authorization data to: Request Headers
