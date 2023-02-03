@@ -1,0 +1,1297 @@
+#: import Factory kivy.factory.Factory
+<MyPopup@Popup>
+    auto_dismiss: False
+    title: "Salvati con successo!"
+    font_size: dp(35)
+    size_hint: .7,.25
+    pos_hint: {"center_x":0.5, "center_y":0.5}
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: .1,.1
+        Button:
+            text: "Ok"
+            font_size: dp(20)
+            on_press: app.cambia_pagina('HomePage')
+            on_release: root.dismiss()
+            size_hint: .8,.2
+            pos_hint: {"center_x":0.5, "center_y":0.5}
+        FloatLayout:
+            size_hint: .1,.1
+
+<BoloPopup@Popup>
+    auto_dismiss: False
+    title: "Bolo necessario:"
+    size_hint: .7,.55
+    pos_hint: {"center_x":0.5, "center_y":0.5}
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            size_hint: 1,.3
+            text: "- Bolo: " + str(app.my_app_bolo.dati_bolo['bolo_richiesto'])
+            font_size: dp(25)
+        Label:
+            size_hint: 1,.3
+            text: "- Insulina attiva: " + str(app.my_app_bolo.dati_bolo['insulina_attiva'])
+            font_size: dp(20)
+        Label:
+            size_hint: 1,.3
+            text: "- Correzione: " + str(app.my_app_bolo.dati_bolo['correzione'])
+            font_size: dp(20)
+        Label:
+            size_hint: 1,.3
+            text: "- Bolo richiesto: " + str(app.my_app_bolo.dati_bolo['bolo_finale'])
+            font_size: dp(20)
+        FloatLayout:
+            size_hint: 1,.1
+        Button:
+            text: "Ok"
+            font_size: dp(15)
+            on_press: app.cambia_pagina('HomePage')
+            on_release: root.dismiss()
+            size_hint: .5,.4
+            pos_hint: {"center_x":0.5, "center_y":0.5}
+
+<ParametriPopup@Popup>
+    auto_dismiss: False
+    title: "Calcola i tuoi parametri:"
+    font_size: dp(5)
+    size_hint: .85,.68
+    pos_hint: {"center_x":0.5, "center_y":0.5}
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            size_hint: 1,.3
+            text: "- FSI:"
+            font_size: dp(25)
+        Label:
+            size_hint: 1,.3
+            text: "1500/Insulina tot. giornaliera"
+            font_size: dp(20)
+        FloatLayout:
+            size_hint: 1,.1
+        Label:
+            size_hint: 1,.3
+            text: "- I:C"
+            font_size: dp(25)
+        Label:
+            size_hint: 1,.3
+            text: " 450/Insulina tot. giornaliera"
+            font_size: dp(20)
+        FloatLayout:
+            size_hint: 1,.1
+        Label:
+            size_hint: 1,.3
+            text: "ATTENZIONE:"
+            halign: "center"
+            valign: "middle"
+            font_size: dp(25)
+        Label:
+            size_hint: 1,.3
+            text:  "Contatta il tuo medico curante\ne verifica che siano corretti"
+            halign: "center"
+            valign: "middle"
+            font_size: dp(18)
+        FloatLayout:
+            size_hint: 1,.2
+        Button:
+            text: "Ok"
+            font_size: dp(15)
+            on_release: root.dismiss()
+            size_hint: .5,.4
+            pos_hint: {"center_x":0.5, "center_y":0.5}
+
+<ActivityPopup@Popup>
+    auto_dismiss: False
+    title: "Modalità " + app.my_app_state_activity.attivita_storage['cambia_popup'] + "!"
+    font_size: dp(35)
+    size_hint: .7,.25
+    pos_hint: {"center_x":0.5, "center_y":0.5}
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: .1,.1
+        Button:
+            text: "Ok"
+            font_size: dp(20)
+            on_press: app.cambia_pagina('HomePage')
+            on_release: root.dismiss()
+            size_hint: .8,.2
+            pos_hint: {"center_x":0.5, "center_y":0.5}
+        FloatLayout:
+            size_hint: .1,.1
+
+<DiabeticStdSpinner>:
+    background_color: kivy.utils.get_color_from_hex("#345065")
+    background_normal: ""
+    canvas.after:
+        Color:
+            rgba: 1,1,1,1
+        Line:
+            points: self.x, self.y + self.height, self.x+self.width, self.y+self.height
+            #points: self.x, self.y, self.x+self.width, self.y divisione da sotto
+            width: dp(1)
+
+<RoundedSpinner@Spinner>
+    background_color: (0,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: kivy.utils.get_color_from_hex("#345065")
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [18]
+
+<DiabeticStdButton>:
+    canvas.before:
+        Color:
+            rgba: kivy.utils.get_color_from_hex("#345065")
+        RoundedRectangle:
+            radius: dp(30),
+            size: self.size
+            pos: self.pos
+    Label:
+        text: root.button_text
+        font_size: dp(30)
+
+<InfoButton>:
+    canvas.before:
+        Color:
+            rgba: kivy.utils.get_color_from_hex("#345065")
+        RoundedRectangle:
+            radius: dp(20),
+            size: self.size
+            pos: self.pos
+    Label:
+        text: root.button_text
+        font_size: dp(25)
+
+<BackButton>
+    source: "images/freccia.png"
+
+<GraphButton>
+    source: "images/Grafico.png"
+
+<LoginPage>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/BackgroundApp.png'
+
+    Image: 
+        source: 'images/logo.png'
+        size_hint_y: 0.30
+        allow_stretch: True
+        pos_hint: {"x": 0, "y": 0.54}
+
+#Box per il rettangolo
+    BoxLayout:
+        size_hint:1,.5
+        pos_hint: {"center_x":0.5 , "center_y":0.25}
+        Label:
+            canvas.before:
+                Color: 
+                    rgba: 1, 1, 1, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [(0,0),(150,150),(0,0),(0,0)]  #Utilizzare dp
+
+#Box per il benvenuto
+    BoxLayout:
+        size_hint:.2,.2
+        pos_hint: {"center_x":0.5 , "center_y":0.95}
+        Label:
+            text: "Benvenuto!"
+            font_size: dp(40)
+            bold: True
+            color: kivy.utils.get_color_from_hex("#ffffff")
+
+#Box per altro testo
+    BoxLayout:
+        size_hint:.2,.2
+        pos_hint: {"center_x":0.5 , "center_y":0.90}
+        Label:
+            text: "Accedi al tuo diario personale"
+            font_size: dp(20)
+            color: kivy.utils.get_color_from_hex("#ffffff")
+
+#Layout per centrare il button
+    FloatLayout:
+        size_hint: 1,.5  #FloatLayout 100% altezza e larghezza
+        DiabeticStdButton:
+            pos_hint: {"center_x":0.5 , "center_y":0.80}   #center_x:0.5, center_y:0.5 per centrare
+            size_hint: 0.5,None
+            height: dp(50)
+            button_text: 'Accedi'
+            on_release:
+                app.request() #Se il bottone e' cliccato, chiama la funzione request che avviera' l'autenticazione
+
+    Image: 
+        source: 'images/loginbottom.png'
+        size_hint_y: 0.35
+        allow_stretch: True
+        pos_hint: {"x": 0, "y": 0}
+
+<HomePage>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/BackgroundApp.png'
+
+    Image: 
+        source: 'images/logo.png'
+        size_hint_y: 0.15
+        allow_stretch: True
+        pos_hint: {"x": 0, "y": 0.83}
+
+    #Box per il rettangolo bianco e blu a sinistra
+    BoxLayout:
+        size_hint:.96,.35
+        pos_hint: {"x":0, "center_y":0.62}
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgb: kivy.utils.get_color_from_hex("#345065")
+            RoundedRectangle:
+                size: self.size
+                pos: self.x, self.y - self.size[1] * 0.06
+                radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+            Color: 
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+
+    #Box per immagine caricamento nel rettangolo bianco a sinistra
+    BoxLayout:
+        id: loading_box
+        size_hint:1.2,.35
+        pos_hint: {"center_x":0.45, "center_y":0.67}
+        Image:
+            id: loading_image
+            source: 'images/caricamento.png'
+            size_hint_y: .7
+
+    #Box per immagine con vari cerchi/valore nel rettangolo bianco a sinistra       
+    BoxLayout:
+        id: value_box
+        size_hint:1.2,.35
+        pos_hint: {"center_x":0.46, "center_y":0.65}
+        Image:
+            id: circle_image
+            source: 'images/vuoto.png'
+            size_hint_y: .9
+
+    #Box per immagine caricamento nel rettangolo bianco a sinistra
+    BoxLayout:
+        id: glucose_value
+        size_hint:1.2,.35
+        pos_hint: {"center_x":0.45, "center_y":0.65}
+        Label:
+            id: glucose_value_label
+            text: app.egvs_data
+            color: 0,0,0,1
+            font_size: dp(37)
+
+    #Bottone grafico
+    BoxLayout:
+        size_hint: .3,.6
+        pos_hint: {"x":0, "center_y":0.52}
+        GraphButton:
+            size_hint: .3,.22
+            pos_hint: {"x": 0, "center_y": 0.5}
+            on_release: app.cambia_pagina('Graph')
+
+    #Box per il rettangolo bianco e blu a destra
+    BoxLayout:
+        size_hint:.96,.35
+        pos_hint: {"x":0.04, "center_y":0.22}
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgb: kivy.utils.get_color_from_hex("#345065")
+            RoundedRectangle:
+                size: self.size
+                pos: self.x, self.y - self.size[1] * 0.06
+                radius: [(dp(110),dp(110)),(0,0),(0,0),(dp(110),dp(110))]
+            Color: 
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [(dp(110),dp(110)),(0,0),(0,0),(dp(110),dp(110))]
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1,1/4
+            FloatLayout:#Spingo i bottoni bolo e attività verso il basso
+                size_hint: 1,.08
+            BoxLayout:
+                size_hint: .9,.2
+                pos_hint: {"x":0.1, "center_y":0.6}
+                orientation: "horizontal"
+                spacing: dp(10)
+                DiabeticStdButton:
+                    size_hint: .3,.7
+                    font_size: dp(1)
+                    button_text: 'Bolo'
+                    pos_hint: {"x": 0, "center_y": 0.5}
+                    on_release:
+                        app.cambia_pagina('Bolo')
+                DiabeticStdButton:
+                    size_hint: .3,.7
+                    font_size: dp(1)
+                    button_text: 'Attività'
+                    pos_hint: {"x": 0, "center_y": 0.5}
+                    on_release:
+                        app.cambia_pagina('Attivita')
+            BoxLayout:
+                size_hint: .9,.2
+                pos_hint: {"x":0.1, "center_y":0}
+                orientation: "horizontal"
+                spacing: dp(10)
+                DiabeticStdButton:
+                    size_hint: .3,.7
+                    font_size: dp(1)
+                    button_text: 'Allarmi'
+                    pos_hint: {"x": 0, "center_y": 0.5}
+                    on_release:
+                        app.cambia_pagina('Allarmi')
+                DiabeticStdButton:
+                    size_hint: .3,.7
+                    font_size: dp(1)
+                    button_text: 'Dati'
+                    pos_hint: {"x": 0, "center_y": 0.5}
+                    on_release:
+                        app.cambia_pagina('Dati') 
+            BoxLayout:#Spingo i bottoni allarmi e parametri verso l'alto ed inserisco il bottone relativo alla sintesi vocale
+                size_hint: .7,.2
+                pos_hint: {"x":0.25, "center_y":0}
+                DiabeticStdButton:
+                    id: sintesi_vocale
+                    disabled: True
+                    size_hint: .3,.7
+                    font_size: dp(0.5)
+                    button_text: 'Sintesi vocale'
+                    pos_hint: {"x": 0, "center_y": 0.5}
+                    on_release: root.attiva_sintesi_vocale()
+
+<Bolo>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/BackgroundApp.png'
+
+    Image: 
+        source: 'images/logo.png'
+        size_hint_y: 0.15
+        allow_stretch: True
+        pos_hint: {"x": 0, "y": 0.83}
+
+    #Bottone back
+    BoxLayout:
+        size_hint: .2,.35
+        pos_hint: {"x":0, "center_y":0.95}
+        BackButton:
+            size_hint: .3,.2
+            pos_hint: {"x": 0, "center_y": 0.5}
+            on_release: app.history_back()
+
+    #Box per il rettangolo bianco e blu
+    BoxLayout:
+        size_hint:.96,.75
+        pos_hint: {"x":0, "center_y":0.42}
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgb: kivy.utils.get_color_from_hex("#345065")
+            RoundedRectangle:
+                size: self.size
+                pos: self.x, self.y - self.size[1] * 0.03
+                radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+            Color: 
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1,1/4
+            Label:
+                size_hint: 1,.6
+                text: "Calcolatore di bolo:"
+                font_size: dp(23)
+                text_size: self.size
+                color: 0,0,0,1
+                halign: "left"
+                valign: "middle"
+                padding: dp(10),0
+            BoxLayout:
+                Label:
+                    size_hint: None, 1
+                    width: dp(20*6)
+                    text: "Glicemia:"
+                    font_size: dp(24)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                TextInput:
+                    id: glicemia
+                    size_hint: None,.6
+                    font_size: dp(22)
+                    width: self.font_size*3
+                    input_filter: "int"
+                    input_type: "number"
+                    multiline: False
+                    pos_hint: {"x":0, "center_y":0.5}
+                    text: app.egvs_data
+                    on_text: root.verifica_bolo()
+                Label:
+                    size_hint: None,1
+                    width: dp(20*4)
+                    text: "mg/dL"
+                    font_size: dp(15)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(5),0
+            Label:#Linea di divisione
+                canvas.before:
+                    Color:
+                        rgb: kivy.utils.get_color_from_hex("#345065")
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+                size_hint_y: None
+                height: 1
+            BoxLayout:
+                size_hint: 1,.5
+                Label:
+                    size_hint: None,1
+                    width: dp(20*7)
+                    text: "Parametri:"
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+            BoxLayout:
+                Label:
+                    size_hint: None,1
+                    width: dp(20*4)
+                    text: "FSI = "
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                TextInput:
+                    id: fsi_bolo
+                    size_hint: None,.6
+                    font_size: dp(22)
+                    width: self.font_size*3
+                    input_filter: "int"
+                    input_type: "number"
+                    multiline: False
+                    pos_hint: {"x":0, "center_y":0.5}
+                    text: str(app.my_app_params.params['fsi'])
+                    on_text: root.verifica_bolo()
+                Label:
+                    size_hint: None,1
+                    width: dp(20*4)
+                    text: "I:C = "
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                TextInput:
+                    id: r_ic_bolo
+                    size_hint: None,.6
+                    font_size: dp(22)
+                    width: self.font_size*3
+                    input_filter: "int"
+                    input_type: "number"
+                    multiline: False
+                    pos_hint: {"x":0, "center_y":0.5}
+                    text: str(app.my_app_params.params['ic'])
+                    on_text: root.verifica_bolo()
+            Label:#Linea di divisione
+                canvas.before:
+                    Color:
+                        rgb: kivy.utils.get_color_from_hex("#345065")
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+                size_hint_y: None
+                height: 1
+            BoxLayout:
+                Label:
+                    size_hint: None, 1
+                    width: dp(20*7.8)
+                    text: "Carboidrati:"
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                TextInput:
+                    id: carboidrati
+                    size_hint: None,.6
+                    font_size: dp(22)
+                    width: self.font_size*3
+                    input_filter: "int"
+                    input_type: "number"
+                    multiline: False
+                    pos_hint: {"x":0, "center_y":0.5}
+                    on_text: root.verifica_bolo()
+                Label:
+                    size_hint: None,1
+                    width: dp(20*2)
+                    text: "g"
+                    font_size: dp(20)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(5),0
+            Label:#Linea di divisione
+                canvas.before:
+                    Color:
+                        rgb: kivy.utils.get_color_from_hex("#345065")
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+                size_hint_y: None
+                height: 1
+            BoxLayout:
+                Label:
+                    size_hint: None, 1
+                    width: dp(20*9.5)
+                    text: "Insulina attiva:"
+                    font_size: dp(24)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                TextInput:
+                    id: insulina_attiva
+                    size_hint: None,.6
+                    font_size: dp(22)
+                    width: self.font_size*3
+                    input_filter: "float"
+                    input_type: "number"
+                    multiline: False
+                    pos_hint: {"x":0, "center_y":0.5}
+                    on_text: root.verifica_bolo()
+                Label:
+                    size_hint: None,1
+                    width: dp(20*2)
+                    text: "u"
+                    font_size: dp(20)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(5),0
+            BoxLayout:
+                size_hint:1,.5
+                Label:
+                    size_hint: None, 1
+                    width: dp(20*12)
+                    text: "(Nelle ultime 3 ore)"
+                    font_size: dp(22)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+            Label:#Linea di divisione
+                canvas.before:
+                    Color:
+                        rgb: kivy.utils.get_color_from_hex("#345065")
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+                size_hint_y: None
+                height: 1
+            FloatLayout:#Serve per far salire i box
+                size_hint: 1,.2            
+            BoxLayout:
+                size_hint: .5,1
+                pos_hint: {"center_x":0.4, "center_y":0.5}
+                DiabeticStdButton:
+                    id: calcola_insulina
+                    size_hint: .3,.7
+                    font_size: dp(0.5)
+                    button_text: 'Calcola'
+                    pos_hint: {"x": 0, "center_y": 0.5}
+                    disabled: True
+                    on_press: root.calcola_bolo()
+                    on_release: Factory.BoloPopup().open()
+            FloatLayout:#Serve per far salire il bottone salva
+                size_hint: .1,.3
+                
+<Allarmi>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/BackgroundApp.png'
+    Image: 
+        source: 'images/logo.png'
+        size_hint_y: 0.15
+        allow_stretch: True
+        pos_hint: {"x": 0, "y": 0.83}
+
+    #Bottone back
+    BoxLayout:
+        size_hint: .2,.35
+        pos_hint: {"x":0, "center_y":0.95}
+        BackButton:
+            size_hint: .3,.2
+            pos_hint: {"x": 0, "center_y": 0.5}
+            on_release: app.history_back()
+
+    #Box per il rettangolo bianco e blu
+    BoxLayout:
+        size_hint:.96,.75
+        pos_hint: {"x":0, "center_y":0.42}
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgb: kivy.utils.get_color_from_hex("#345065")
+            RoundedRectangle:
+                size: self.size
+                pos: self.x, self.y - self.size[1] * 0.03
+                radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+            Color: 
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1,1/4
+            BoxLayout:
+                FloatLayout:
+                    size_hint: .2,1
+                    canvas:
+                        PushMatrix:
+                        Color:
+                            rgba: 1,0,0,1
+                        Rotate:
+                            angle: 180
+                            origin: self.center
+                        Ellipse:
+                            segments: 3
+                            pos: self.pos[0] + (self.size[0] - min(*self.size) * .5)/2, self.pos[1] + (self.size[1] - min(*self.size) * .5)/2
+                            size: min(*self.size) * .5, min(*self.size) * .5
+                        PopMatrix
+                Label:
+                    text: "Ipoglicemia:"
+                    font_size: self.size[0] * .1
+                    text_size: self.size
+                    color: 0,0,0,1
+                    size_hint: .8,1 
+                    halign: "left"
+                    valign: "middle"
+            BoxLayout:
+                BoxLayout:
+                    size_hint: .2,1
+                FloatLayout:
+                    size_hint: None,1
+                    width: dp(20*3)
+                    TextInput:
+                        id: value_ipo
+                        size_hint: None,.6
+                        font_size: dp(20)
+                        width: self.font_size*3
+                        input_filter: "int"
+                        input_type: "number"
+                        multiline: False
+                        pos_hint: {"x":0, "center_y":0.5}
+                        text: str(app.my_app_settings.settings['range_min'])
+                        on_text: root.verifica_valore()
+                Label:
+                    text: "mg/dL"
+                    font_size: dp(20)
+                    color: 0,0,0,1
+                    text_size: self.size
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+        Label:#Linea di divisione
+            size_hint:1,.5
+            canvas.before:
+                Color:
+                    rgb: kivy.utils.get_color_from_hex("#345065")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            size_hint_y: None
+            height: 1
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1,1/4
+            BoxLayout:
+                FloatLayout:
+                    size_hint: .2,1
+                    canvas:
+                        Color:
+                            rgba: 1,1,0,1
+                        Ellipse:
+                            segments: 3
+                            pos: self.pos[0] + (self.size[0] - min(*self.size) * .5)/2, self.pos[1] + (self.size[1] - min(*self.size) * .5)/2
+                            size: min(*self.size) * .5, min(*self.size) * .5
+                Label:
+                    text: "Iperglicemia:"
+                    font_size: self.size[0] * .1
+                    text_size: self.size
+                    color: 0,0,0,1
+                    size_hint: .8,1 
+                    halign: "left"
+                    valign: "middle"
+            BoxLayout:
+                BoxLayout:
+                    size_hint: .2,1
+                FloatLayout:
+                    size_hint: None,1
+                    width: dp(20*3)
+                    TextInput:
+                        id: value_iper
+                        size_hint: None,.6
+                        font_size: dp(20)
+                        width: self.font_size*3
+                        input_filter: "int"
+                        input_type: "number"
+                        multiline: False
+                        pos_hint: {"x":0, "center_y":0.5}
+                        text: str(app.my_app_settings.settings['range_max'])
+                        on_text: root.verifica_valore()
+                Label:
+                    text: "mg/dL"
+                    font_size: dp(20)
+                    color: 0,0,0,1
+                    text_size: self.size
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+        Label:#Linea di divisione
+            size_hint:1,.5
+            canvas.before:
+                Color:
+                    rgb: kivy.utils.get_color_from_hex("#345065")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            size_hint_y: None
+            height: 1
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1,1/4
+            BoxLayout:
+                FloatLayout:
+                    size_hint: .2,1
+                    canvas:
+                        Color: 
+                            rgba: 0, 1, 0, 1
+                        Ellipse:
+                            pos: self.pos[0] + (self.size[0] - min(*self.size) * .5)/2, self.pos[1] + (self.size[1] - min(*self.size) * .5)/2
+                            size: min(*self.size) * .5, min(*self.size) * .5
+                Label:
+                    text: "Il tuo range:"
+                    font_size: self.size[0] * .1
+                    text_size: self.size
+                    color: 0,0,0,1
+                    size_hint: .8,1 
+                    halign: "left"
+                    valign: "middle"
+            BoxLayout:
+                orientation: "vertical"
+                Label:
+                    id: range_area
+                    text: str(app.my_app_settings.settings['range_min'])+"mg/dL - "+str(app.my_app_settings.settings['range_max'])+"mg/dL"
+                    font_size: dp(20)
+                    color: 0,0,0,1
+                    text_size: self.size
+                    halign: "center"
+                    valign: "top"
+                Label:
+                    id: label_stato_attivita
+                    text: "(Stato attività DISATTIVATA)"
+                    font_size: dp(15)
+                    color: 0,0,0,1
+                    text_size: self.size
+                    halign: "center"
+                    valign: "top"
+        Label:#Linea di divisione
+            size_hint:1,.5
+            canvas.before:
+                Color:
+                    rgb: kivy.utils.get_color_from_hex("#345065")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            size_hint_y: None
+            height: 1
+        BoxLayout:
+            size_hint: .5,1/4
+            pos_hint: {"center_x":0.4, "center_y":0.5}
+            DiabeticStdButton:
+                id: salva_allarmi
+                size_hint: .3,.4
+                font_size: dp(0.5)
+                button_text: 'Salva'
+                pos_hint: {"x": 0, "center_y": 0.5}
+                disabled: True
+                on_press: root.salva_allarmi()
+                on_release: Factory.MyPopup().open()
+
+<Attivita>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/BackgroundApp.png'
+
+    Image: 
+        source: 'images/logo.png'
+        size_hint_y: 0.15
+        allow_stretch: True
+        pos_hint: {"x": 0, "y": 0.83}
+
+    #Bottone back
+    BoxLayout:
+        size_hint: .2,.35
+        pos_hint: {"x":0, "center_y":0.95}
+        BackButton:
+            size_hint: .3,.2
+            pos_hint: {"x": 0, "center_y": 0.5}
+            on_release: app.history_back()
+
+    #Box per il rettangolo bianco e blu
+    BoxLayout:
+        size_hint:.96,.75
+        pos_hint: {"x":0, "center_y":0.42}
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgb: kivy.utils.get_color_from_hex("#345065")
+            RoundedRectangle:
+                size: self.size
+                pos: self.x, self.y - self.size[1] * 0.03
+                radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+            Color: 
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1,1/4
+            Label:
+                text: "MODALITÀ ATTIVITÀ FISICA:"
+                font_size: dp(20)
+                text_size: self.size
+                color: 0,0,0,1
+                halign: "left"
+                valign: "middle"
+                padding: dp(10),0
+            Label:
+                id: testo_centrale_attivita
+                text: "Se continui, i parametri verranno modificati a 140-180, in modo che potrai fermarti e prevenire un eventuale ipoglicemia"
+                font_size: dp(20)
+                text_size: self.size
+                color: 0,0,0,1
+                halign: "left"
+                valign: "middle"
+                padding: dp(10),0
+            Label:
+                id: testo_continua
+                size_hint: 1,.8
+                text: "Vuoi attivarla?"
+                font_size: dp(22)
+                text_size: self.size
+                color: 0,0,0,1
+                halign: "center"
+                valign: "middle"
+                padding: dp(10),0
+            BoxLayout:
+                id: box_bottone_attivita
+                size_hint: .8,.5
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                DiabeticStdButton:
+                    id: attiva_attivita
+                    size_hint: .3,.8
+                    font_size: dp(0.5)
+                    button_text: 'Attiva'
+                    pos_hint: {"x": 0, "center_y": 0.5}
+                    on_press: root.avvia_ferma_attivita()
+                    on_release: Factory.ActivityPopup().open()
+                    
+            FloatLayout:
+                size_hint: 1,.3
+<Dati>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/BackgroundApp.png'
+
+    Image: 
+        source: 'images/logo.png'
+        size_hint_y: 0.15
+        allow_stretch: True
+        pos_hint: {"x": 0, "y": 0.83}
+
+    #Bottone back
+    BoxLayout:
+        size_hint: .2,.35
+        pos_hint: {"x":0, "center_y":0.95}
+        BackButton:
+            size_hint: .3,.2
+            pos_hint: {"x": 0, "center_y": 0.5}
+            on_release: app.history_back()
+
+    #Box per il rettangolo bianco e blu
+    BoxLayout:
+        size_hint:.96,.75
+        pos_hint: {"x":0, "center_y":0.42}
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgb: kivy.utils.get_color_from_hex("#345065")
+            RoundedRectangle:
+                size: self.size
+                pos: self.x, self.y - self.size[1] * 0.03
+                radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+            Color: 
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1,1/4
+            Label:
+                size_hint: 1,.9
+                text: "Inserisci i tuoi dati:"
+                font_size: dp(23)
+                text_size: self.size
+                color: 0,0,0,1
+                halign: "left"
+                valign: "middle"
+                padding: dp(10),0
+            BoxLayout:
+                Label:
+                    size_hint: None, 1
+                    width: dp(20*3.5)
+                    text: "Età:"
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                TextInput:
+                    id: eta
+                    size_hint: None,.6
+                    font_size: dp(20)
+                    width: self.font_size*3
+                    input_filter: "int"
+                    input_type: "number"
+                    multiline: False
+                    pos_hint: {"x":0, "center_y":0.5}
+                    text: str(app.my_app_params.params['eta'])
+                    on_text: root.verifica_parametri()
+            Label:#Linea di divisione
+                canvas.before:
+                    Color:
+                        rgb: kivy.utils.get_color_from_hex("#345065")
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+                size_hint_y: None
+                height: 1
+            BoxLayout:
+                Label:
+                    size_hint: None,1
+                    width: dp(20*4.5)
+                    text: "Peso:"
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                TextInput:
+                    id: peso
+                    size_hint: None,.6
+                    font_size: dp(20)
+                    width: self.font_size*3
+                    input_filter: "int"
+                    input_type: "number"
+                    multiline: False
+                    pos_hint: {"x":0, "center_y":0.5}
+                    text: str(app.my_app_params.params['peso'])
+                    on_text: root.verifica_parametri()
+                Label:
+                    size_hint: None,1
+                    width: dp(20*2)
+                    text: "Kg"
+                    font_size: dp(20)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(5),0
+            Label:#Linea di divisione
+                canvas.before:
+                    Color:
+                        rgb: kivy.utils.get_color_from_hex("#345065")
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+                size_hint_y: None
+                height: 1
+            BoxLayout:
+                Label:
+                    size_hint: None,1
+                    width: dp(20*9.5)
+                    text: "Tipo di diabete:"
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                RoundedSpinner:
+                    id: tipo_diabete
+                    text: "Seleziona"
+                    values: ['Tipo 1', 'Tipo 2']
+                    blink_size: 0
+                    option_cls: 'DiabeticStdSpinner'
+                    size_hint:(None,None)
+                    size: root.width/3,root.height/12
+                    on_text: root.verifica_parametri()
+            FloatLayout:#Serve a fare spazio prima della linea di divisione
+                size_hint: .1,.1
+            Label:#Linea di divisione
+                canvas.before:
+                    Color:
+                        rgb: kivy.utils.get_color_from_hex("#345065")
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+                size_hint_y: None
+                height: 1
+            BoxLayout:
+                Label:
+                    size_hint: None,1
+                    width: dp(20*6)
+                    text: "Terapia:"
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                RoundedSpinner:
+                    id: terapia
+                    text: "Seleziona"
+                    values: ['Microinfusore', 'Penne/Siringhe']
+                    blink_size: 0
+                    option_cls: 'DiabeticStdSpinner'
+                    size_hint:(None,None)
+                    size: root.width/2,root.height/12
+                    on_text: root.verifica_parametri()
+            FloatLayout:#Serve a fare spazio prima della linea di divisione
+                size_hint: .1,.1
+            Label:#Linea di divisione
+                canvas.before:
+                    Color:
+                        rgb: kivy.utils.get_color_from_hex("#345065")
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+                size_hint_y: None
+                height: 1
+            BoxLayout:
+                Label:
+                    size_hint: None,1
+                    width: dp(20*7)
+                    text: "Parametri:"
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                InfoButton:
+                    id: info_parametri
+                    size_hint: .3,.8
+                    font_size: dp(0.2)
+                    button_text: 'Info'
+                    pos_hint: {"x": 0, "center_y": 0.5}
+                    on_press: Factory.ParametriPopup().open()
+                FloatLayout:#Serve per accorciare il bottone
+                    size_hint: .2,.1
+            BoxLayout:
+                Label:
+                    size_hint: None,1
+                    width: dp(20*4)
+                    text: "FSI = "
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                TextInput:
+                    id: fsi
+                    size_hint: None,.6
+                    font_size: dp(20)
+                    width: self.font_size*3
+                    input_filter: "int"
+                    input_type: "number"
+                    multiline: False
+                    pos_hint: {"x":0, "center_y":0.5}
+                    text: str(app.my_app_params.params['fsi'])
+                    on_text: root.verifica_parametri()
+                Label:
+                    size_hint: None,1
+                    width: dp(20*4)
+                    text: "I:C = "
+                    font_size: dp(25)
+                    text_size: self.size
+                    color: 0,0,0,1
+                    halign: "left"
+                    valign: "middle"
+                    padding: dp(10),0
+                TextInput:
+                    id: r_ic
+                    size_hint: None,.6
+                    font_size: dp(20)
+                    width: self.font_size*3
+                    input_filter: "int"
+                    input_type: "number"
+                    multiline: False
+                    pos_hint: {"x":0, "center_y":0.5}
+                    text: str(app.my_app_params.params['ic'])
+                    on_text: root.verifica_parametri()
+            Label:#Linea di divisione
+                canvas.before:
+                    Color:
+                        rgb: kivy.utils.get_color_from_hex("#345065")
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [(0,0),(dp(110),dp(110)),(dp(110),dp(110)),(0,0)]
+                size_hint_y: None
+                height: 1
+            FloatLayout:#Serve per far salire i parametri
+                size_hint: .1,.4
+            BoxLayout:
+                size_hint: .75,1
+                pos_hint: {"center_x":0.4, "center_y":0.5}
+                DiabeticStdButton:
+                    id: mail
+                    size_hint: .6,.9
+                    font_size: dp(0.5)
+                    button_text: 'Invia'
+                    pos_hint: {"x": 0, "center_y": 0.5}
+                    on_press: root.invia_report()
+                FloatLayout:
+                    size_hint: .1,.1
+                DiabeticStdButton:
+                    id: salva_parametri
+                    size_hint: .7,.9
+                    font_size: dp(0.5)
+                    button_text: 'Salva'
+                    pos_hint: {"x": 0, "center_y": 0.5}
+                    disabled: True
+                    on_press: root.salva_dati()
+                    on_release: Factory.MyPopup().open()
+            FloatLayout:#Serve per far salire il bottone salva
+                size_hint: .1,.3
+
+<Graph>
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/BackgroundApp.png'
+
+    Image: 
+        source: 'images/logo.png'
+        size_hint_y: 0.15
+        allow_stretch: True
+        pos_hint: {"x": 0, "y": 0.83}
+
+    #Bottone back
+    BoxLayout:
+        size_hint: .2,.35
+        pos_hint: {"x":0, "center_y":0.95}
+        BackButton:
+            size_hint: .3,.2
+            pos_hint: {"x": 0, "center_y": 0.5}
+            on_release: app.history_back()
+
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,.2
+        #Box per grafico
+        BoxLayout:
+            id: graph
+            size_hint: 1,0.5
+            orientation: "vertical"
+            pos_hint: {"center_x":0.5, "center_y":0.5}
+        #Box per glicemia
+        BoxLayout:
+            size_hint: 1,0.15
+            orientation: "vertical"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Label:
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                size_hint: None,1
+                width: dp(20*9)
+                text: "Glicemia: " + app.egvs_data
+                font_size: dp(25)
+                text_size: self.size
+                color: 0,0,0,1
+                halign: "center"
+                valign: "middle"
+                padding: dp(15),0
+        #Box per bottone salva grafico
+        BoxLayout:
+            size_hint: 1,0.15
+            orientation: "vertical"
+            FloatLayout:
+                size_hint: .1,.1
