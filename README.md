@@ -17,11 +17,13 @@ The "Bolo" page, is used to enter the data necessary to calculate the insulin ne
 # Allarmi
 
 The "Allarmi" page, is used to create the optimal range of glucose blood.
+
 ![Allarmi](https://github.com/gianfra097/DiabeticDiary/assets/82977399/9ff53e37-1955-418d-9de3-4223b6a0cd42)
 
 # Dati
 
 The "Data" page, is used to save the personal data
+
 ![Dati](https://github.com/gianfra097/DiabeticDiary/assets/82977399/71ab159e-827c-4c2b-9e99-d26fa2617f2d)
 
 
