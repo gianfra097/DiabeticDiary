@@ -28,6 +28,9 @@ The "Data" page, is used to save the personal data
 
 
 # Attività
+The "Attività" page, is used to update optimal range and prevent hypoglycemia during physical activity
+
+![Attività](https://github.com/gianfra097/DiabeticDiary/assets/82977399/e7252350-c1a6-4926-8bdb-59c82d0fbd3f)
 
 # Dati
 
