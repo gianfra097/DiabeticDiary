@@ -32,6 +32,8 @@ The "Attività" page, is used to update optimal range and prevent hypoglycemia d
 
 ![Attività](https://github.com/gianfra097/DiabeticDiary/assets/82977399/e7252350-c1a6-4926-8bdb-59c82d0fbd3f)
 
-# Dati
 
 # Grafico
+The "Grafico" page, is used to display a graph of the blood sugar trend
+
+![Grafico](https://github.com/gianfra097/DiabeticDiary/assets/82977399/27af9fca-03a7-452b-ba2f-7fd5b0879fbc)
